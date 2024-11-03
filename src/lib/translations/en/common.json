@@ -1,0 +1,12 @@
+{
+  "tooltitle":"Elin Portrait Generator",
+	"selectfolder": "Select Game Folder",
+	"ymlnotfound": ".yml file not found.will create new file",
+	"ymlcreated": ".yml file created",
+	"Portraits": "Portrait List(Yellow border is already replaced)",
+	"invalidgamepath": "Not found game .exe in folder",
+	"uploadImage": "Drug&Drop\nor Click",
+	"download": "Download",
+	"upload": "Upload",
+	"openFolder": "Open Mod Folder"
+}

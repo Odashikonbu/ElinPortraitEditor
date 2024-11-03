@@ -1,0 +1,12 @@
+{
+  "tooltitle":"Elin ポートレート生成ツール",
+	"selectfolder": "ゲームフォルダを選択",
+	"ymlnotfound": "ymlファイルが見つかりません、新規作成します",
+	"ymlcreated": "ymlファイルを作成しました。",
+	"Portraits": "ポートレート一覧(黄色枠は置換済み)",
+	"invalidgamepath": "選択されたフォルダ内にゲームのexeが見つかりません。",
+	"uploadImage": "ドラッグ&ドロップ\nまたはクリック",
+	"download": "ダウンロード",
+	"upload": "アップロード",
+	"openFolder": "modフォルダを開く"
+}
