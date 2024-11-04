@@ -8,5 +8,6 @@
 	"uploadImage": "ドラッグ&ドロップ\nまたはクリック",
 	"download": "ダウンロード",
 	"upload": "アップロード",
-	"openFolder": "modフォルダを開く"
+	"openFolder": "modフォルダを開く",
+	"confirmDelete": "本当に削除してもよろしいですか？"
 }

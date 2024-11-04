@@ -8,5 +8,6 @@
 	"uploadImage": "Drug&Drop\nor Click",
 	"download": "Download",
 	"upload": "Upload",
-	"openFolder": "Open Mod Folder"
+	"openFolder": "Open Mod Folder",
+	"confirmDelete": "Are you sure you want to delete it?"
 }

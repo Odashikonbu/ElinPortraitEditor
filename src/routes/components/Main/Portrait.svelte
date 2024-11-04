@@ -1,9 +1,10 @@
 <script lang="ts">
   import { convertFileSrc } from '@tauri-apps/api/core';
   import { join, desktopDir } from '@tauri-apps/api/path';
-  import { exists, readFile, create } from '@tauri-apps/plugin-fs';
-  import { save, open } from '@tauri-apps/plugin-dialog';
+  import { exists, readFile, create, remove } from '@tauri-apps/plugin-fs';
+  import { save, open, confirm } from '@tauri-apps/plugin-dialog';
   import { onMount } from 'svelte';
+  import MdDelete from 'svelte-icons/md/MdDelete.svelte'
   import { t } from "$lib/translations/translations";
 
   const {imageName, modPath, originPath} = $props()
@@ -58,7 +59,19 @@
       hiddenMenu = !hiddenMenu
       initImage()
     }
+  }
 
+  const deleteImage = async() => {
+    const modImagePath = await join(modPath as string, imageName as string)
+    console.log(modImagePath)
+    if(await exists(modImagePath)){
+      const result = await confirm($t("common.confirmDelete"))
+      if(result){
+        await remove(await join(modPath as string, imageName as string))
+        initImage()
+        hiddenMenu = !hiddenMenu
+      }
+    }
   }
 
 
@@ -71,9 +84,14 @@
     </button>
   {:else}
     <div class={hiddenMenu ? "hidden" : "mx-auto"}>
-      <button class="btn variant-glass mt-4 w-24 mx-3" onclick={() => {download()}}>{$t("common.download")}</button>
+      <button class="btn variant-glass mt-1 w-24 mx-3" onclick={() => {download()}}>{$t("common.download")}</button>
       <button class="btn variant-glass mt-2 w-24 mx-3" onclick={() => {upload()}}>{$t("common.upload")}</button>
-      <button class="btn variant-outline-primary mt-6 w-24 h-5 mx-3" onclick={() => {hiddenMenu = !hiddenMenu}}>✖</button>
+      <div class="flex flex-row mx-auto columns-2 mt-5">
+        <button class="btn variant-outline-primary w-10" onclick={() => {hiddenMenu = !hiddenMenu}}>✖</button>
+        {#if replaced}
+          <button class="btn variant-filled-error ml-4 w-32" onclick={() => {deleteImage()}}><MdDelete/></button>
+        {/if}
+      </div>
     </div>
   {/if}
 </div>
