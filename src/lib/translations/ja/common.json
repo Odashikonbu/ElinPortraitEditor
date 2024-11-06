@@ -9,5 +9,6 @@
 	"download": "ダウンロード",
 	"upload": "アップロード",
 	"openFolder": "modフォルダを開く",
+	"invalidImage": "画像形式がPNGではありません。",
 	"confirmDelete": "本当に削除してもよろしいですか？"
 }

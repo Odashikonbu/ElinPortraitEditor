@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { convertFileSrc } from '@tauri-apps/api/core';
-  import { join, desktopDir } from '@tauri-apps/api/path';
-  import { exists, readFile, create, remove } from '@tauri-apps/plugin-fs';
-  import { save, open, confirm } from '@tauri-apps/plugin-dialog';
+  import { convertFileSrc, invoke } from '@tauri-apps/api/core';
+  import { join, desktopDir, extname } from '@tauri-apps/api/path';
+  import { exists, readFile, create, remove, copyFile } from '@tauri-apps/plugin-fs';
+  import { save, open, confirm, message } from '@tauri-apps/plugin-dialog';
   import { onMount } from 'svelte';
   import MdDelete from 'svelte-icons/md/MdDelete.svelte'
   import { t } from "$lib/translations/translations";
@@ -48,13 +48,27 @@
     const path = await open({
       multiple: false,
       directory: false,
+      filters: [{
+        name: 'PNG',
+        extensions: ['png'],
+      }],
     });
 
-    if(path != null){
-      const binary = await readFile(path)
-      const file = await create(await join(modPath as string, imageName as string))
+    console.log(await extname(path as string))
+    if(path != null && await extname(path as string) != "png"){
+      await message($t("common.invalidImage"))
+      return
+    }
 
-      await file.write(binary)
+    if(path != null){
+      const modImageFile = await join(modPath as string, imageName as string)
+      const originImageFile  = await join(originPath as string, imageName as string)
+      console.log(modImageFile)
+      console.log(originImageFile)
+
+      await copyFile(path, modImageFile)
+      await invoke("resize_image", {modImage: modImageFile, originImage: originImageFile})
+
       replaced = true
       hiddenMenu = !hiddenMenu
       initImage()
@@ -63,7 +77,6 @@
 
   const deleteImage = async() => {
     const modImagePath = await join(modPath as string, imageName as string)
-    console.log(modImagePath)
     if(await exists(modImagePath)){
       const result = await confirm($t("common.confirmDelete"))
       if(result){

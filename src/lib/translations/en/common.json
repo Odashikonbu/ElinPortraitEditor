@@ -9,5 +9,6 @@
 	"download": "Download",
 	"upload": "Upload",
 	"openFolder": "Open Mod Folder",
+	"invalidImage": "Image is not .png",
 	"confirmDelete": "Are you sure you want to delete it?"
 }
