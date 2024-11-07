@@ -54,8 +54,7 @@
       }],
     });
 
-    console.log(await extname(path as string))
-    if(path != null && await extname(path as string) != "png"){
+    if(path != null && await extname(path as string) as string != "png"){
       await message($t("common.invalidImage"))
       return
     }
@@ -63,8 +62,6 @@
     if(path != null){
       const modImageFile = await join(modPath as string, imageName as string)
       const originImageFile  = await join(originPath as string, imageName as string)
-      console.log(modImageFile)
-      console.log(originImageFile)
 
       await copyFile(path, modImageFile)
       await invoke("resize_image", {modImage: modImageFile, originImage: originImageFile})
