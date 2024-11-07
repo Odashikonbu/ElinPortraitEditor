@@ -11,16 +11,14 @@ export const langs = () => {
 }
 
 export const getXml = () => {
-  return `
-<?xml version="1.0" encoding="utf-8"?>
-<Meta>
-<title>Elin Custom Portrait</title>
-<id>elin_customportrait</id>
-<author>You</author>
-<builtin>true</builtin>
-<loadPriority>-100</loadPriority>
-<version>0.22.1</version>
-<description>Custom Portrait</description>
-</Meta>
-  `
+  return  '<?xml version="1.0" encoding="utf-8"?>\n' + 
+          '<Meta>\n' +
+          '<title>Portrait</title>\n' +
+          '<id>Elin Portrait</id>\n' +
+          '<author>You</author>\n' +
+          '<builtin>true</builtin>\n' +
+          '<loadPriority>100</loadPriority>\n' +
+          '<version>0.22.1</version>\n' +
+          '<description>Portrait</description>\n' +
+          '</Meta>'
 }
